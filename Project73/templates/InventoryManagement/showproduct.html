@@ -1,0 +1,44 @@
+{% extends 'InventoryManagement/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>Product Information </h3>
+<table class="table table-dark table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Date</th>
+        <th>Provider</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+        <th>Stock</th>
+
+    </tr>
+    </thead>
+    {% for i in records %}
+    <tr>
+        <td>{{i.Date}}</td>
+        <td>{{i.Provider}}</td>
+        <td>{{i.Name_of_Product}}</td>
+        <td>{{i.Price}}</td>
+        <td>{{i.Quantity}}</td>
+        <td>{{i.Amount}}</td>
+        <td>{{i.Stock}}</td>
+        <td>
+            <a href="{% url 'update' i.id %}">
+                <button class="btn btn-primary">Update</button>
+            </a>
+        </td>
+        <td>
+            <a href="{% url 'delete' i.id %}">
+                <button class="btn btn-danger">Delete</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br><br>
+<a href="{% url 'add' %}">
+    <button class = 'btn btn-success'>Add Product</button>
+</a>
+{% endblock %}
